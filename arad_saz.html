@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>آراد ساز | برنامه‌ساز آنلاین</title>
+<style>
+:root{--accent:#7657ff;--bg:#0b1020;--panel:#151d33;--muted:#9eabc8}
+*{box-sizing:border-box}
+body{margin:0;font-family:Tahoma,Arial,sans-serif;background:radial-gradient(circle at 15% 10%,#242052 0,transparent 32%),var(--bg);color:#f6f7ff;min-height:100vh}
+header{display:flex;align-items:center;justify-content:space-between;padding:18px 6%;border-bottom:1px solid #ffffff18;background:#0b1020bb;position:sticky;top:0;backdrop-filter:blur(12px);z-index:2}
+.logo{font-size:24px;font-weight:900}.logo span{color:#a997ff}
+.badge{font-size:12px;color:#c9c0ff;background:#7657ff22;border:1px solid #7657ff66;padding:8px 12px;border-radius:30px}
+main{max-width:1120px;margin:34px auto;padding:0 18px}
+.hero{text-align:center;margin-bottom:30px}.hero h1{font-size:clamp(28px,5vw,44px);margin:10px 0}.hero p{color:var(--muted);line-height:1.9;margin:0}
+.layout{display:grid;grid-template-columns: minmax(280px, .9fr) minmax(300px,1.1fr);gap:20px}
+.card{background:#151d33eF;border:1px solid #ffffff16;border-radius:22px;padding:22px;box-shadow:0 18px 55px #0004}
+h2{font-size:19px;margin:0 0 20px}
+label{display:block;font-size:13px;color:#c8d1e8;margin:15px 0 8px}
+input,textarea,select{width:100%;border:1px solid #ffffff20;background:#0c1428;color:white;border-radius:12px;padding:13px;font:inherit;outline:none}
+input:focus,textarea:focus,select:focus{border-color:#9b86ff}
+textarea{min-height:90px;resize:vertical}
+.color-row{display:flex;align-items:center;gap:12px}.color-row input{width:54px;height:44px;padding:4px}
+button{border:0;border-radius:12px;padding:13px 17px;font:inherit;font-weight:bold;cursor:pointer;transition:.2s}
+.primary{background:linear-gradient(135deg,#8b6cff,#5b43dc);color:white;width:100%;margin-top:20px}
+.primary:hover{filter:brightness(1.12);transform:translateY(-1px)}
+.secondary{background:#ffffff12;color:#fff;border:1px solid #ffffff20}
+.preview-wrap{background:#0a1122;border:1px dashed #ffffff30;border-radius:17px;padding:16px;min-height:360px;display:grid;place-items:center}
+.preview{background:#fff;color:#20243a;border-radius:14px;width:100%;max-width:440px;min-height:310px;overflow:hidden;text-align:center;box-shadow:0 12px 35px #0005}
+.preview-top{height:10px;background:var(--accent)}
+.preview-content{padding:38px 22px}
+.preview-icon{width:62px;height:62px;border-radius:18px;background:var(--accent);display:grid;place-items:center;color:#fff;font-size:28px;margin:0 auto 18px}
+.preview h3{font-size:25px;margin:0 0 12px}.preview p{color:#687087;line-height:1.9;margin:0 auto 22px;max-width:330px}
+.preview a{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:12px 25px;border-radius:10px;font-weight:bold}
+.hint{font-size:12px;color:var(--muted);line-height:1.8;margin-top:14px}
+footer{text-align:center;color:#7e8aa8;font-size:12px;padding:28px}
+@media(max-width:760px){.layout{grid-template-columns:1fr}header{padding:15px 18px}.hero{margin-top:22px}}
+</style>
+</head>
+<body>
+<header><div class="logo">✦ آراد <span>ساز</span></div><div class="badge">برنامه‌ساز آنلاین</div></header>
+<main>
+<section class="hero">
+<div class="badge">بدون نیاز به کدنویسی</div>
+<h1>ایده‌ات رو به برنامه تبدیل کن! 🚀</h1>
+<p>اسم و توضیحات برنامه‌ات رو بنویس، ظاهرش رو انتخاب کن و پیش‌نمایشش رو ببین.</p>
+</section>
+<section class="layout">
+<div class="card">
+<h2>🛠️ ساخت برنامه جدید</h2>
+<label for="appName">اسم برنامه</label>
+<input id="appName" value="برنامه جدید من" maxlength="35">
+<label for="appDesc">توضیحات برنامه</label>
+<textarea id="appDesc">به برنامه من خوش آمدید! اینجا می‌تونی ایده‌های جذابت رو اجرا کنی.</textarea>
+<label for="buttonText">متن دکمه</label>
+<input id="buttonText" value="شروع کن" maxlength="22">
+<label for="accent">رنگ اصلی برنامه</label>
+<div class="color-row"><input id="accent" type="color" value="#7657ff"><span class="hint">رنگ دلخواهت رو انتخاب کن.</span></div>
+<button class="primary" id="downloadBtn">⬇️ ساخت و دریافت فایل برنامه</button>
+<p class="hint">با زدن این دکمه، یک فایل HTML از صفحه‌ای که طراحی کردی ساخته می‌شه. می‌تونی اون رو در مرورگر باز کنی.</p>
+</div>
+<div class="card">
+<h2>👀 پیش‌نمایش زنده</h2>
+<div class="preview-wrap">
+<div class="preview" id="preview">
+<div class="preview-top"></div>
+<div class="preview-content">
+<div class="preview-icon">✦</div>
+<h3 id="outName">برنامه جدید من</h3>
+<p id="outDesc">به برنامه من خوش آمدید! اینجا می‌تونی ایده‌های جذابت رو اجرا کنی.</p>
+<a href="#" id="outButton">شروع کن</a>
+</div>
+</div>
+</div>
+<p class="hint">هر تغییری در فرم سمت راست/بالا انجام بدی، این پیش‌نمایش به‌روز می‌شه.</p>
+</div>
+</section>
+</main>
+<footer>ساخته‌شده با ❤️ در آراد ساز</footer>
+<script>
+const $=id=>document.getElementById(id);
+function update(){
+ $('outName').textContent=$('appName').value||'برنامه بدون نام';
+ $('outDesc').textContent=$('appDesc').value||'توضیحی وارد نشده است.';
+ $('outButton').textContent=$('buttonText').value||'ادامه';
+ document.documentElement.style.setProperty('--accent',$('accent').value);
+}
+['appName','appDesc','buttonText','accent'].forEach(id=>$(id).addEventListener('input',update));
+$('outButton').addEventListener('click',e=>e.preventDefault());
+$('downloadBtn').addEventListener('click',()=>{
+ const name=$('appName').value.trim()||'برنامه من';
+ const desc=$('appDesc').value.trim()||'به برنامه من خوش آمدید.';
+ const btn=$('buttonText').value.trim()||'شروع کن';
+ const color=$('accent').value;
+ const safe=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const output=`<!DOCTYPE html><html lang="fa" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${safe(name)}</title><style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#10172b;font-family:Tahoma,Arial;color:#222}.box{background:white;text-align:center;width:min(86%,420px);padding:42px 24px;border-radius:22px;box-shadow:0 20px 60px #0005}.icon{margin:auto auto 18px;width:65px;height:65px;border-radius:18px;background:${color};color:white;display:grid;place-items:center;font-size:30px}h1{font-size:26px}p{color:#667;line-height:2}button{background:${color};border:0;border-radius:10px;color:white;padding:13px 28px;font-size:16px;cursor:pointer}</style></head><body><main class="box"><div class="icon">✦</div><h1>${safe(name)}</h1><p>${safe(desc)}</p><button onclick="alert('به برنامه خوش آمدی!')">${safe(btn)}</button></main></body></html>`;
+ const blob=new Blob([output],{type:'text/html;charset=utf-8'});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement('a');a.href=url;a.download='arad-saz-app.html';a.click();
+ URL.revokeObjectURL(url);
+});
+update();
+</script>
+</body>
+</html>
